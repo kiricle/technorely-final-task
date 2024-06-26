@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String    @id @default(uuid())
+  email       String    @unique
+  hash        String
+  phoneNumber String    @unique @map("phone_number")
+  lastName    String    @map("last_name")
+  firstName   String    @map("first_name")
+  nickname    String    @unique
+  position    String
+  companies   Company[]
+
+  @@map("user")
+}
+
+model Company {
+  id                String @id @default(uuid())
+  name              String @unique
+  address           String
+  serviceOfActivity String @map("service_of_activity")
+  numberOfEmployees Int    @map("number_of_employees")
+  description       String
+  type              String
+  ownerId           String
+  owner             User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@map("company")
+}

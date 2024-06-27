@@ -30,5 +30,7 @@ export class AuthController {
 
   @UsePipes(new ValidationPipe())
   @Get('/logout')
-  logout() {}
+  logout() {
+    return true;
+  }
 }

@@ -1,10 +1,11 @@
 import { InputHTMLAttributes } from 'react';
-// import { UseFormRegister } from 'react-hook-form';
+import { UseFormRegister } from 'react-hook-form';
 import styles from './Input.module.scss';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     content: string;
-    // register: UseFormRegister<any>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    register: UseFormRegister<any>;
     name: string;
 }
 
@@ -12,7 +13,7 @@ export const Input = ({
     name,
     type,
     content,
-    // register,
+    register,
     className,
     ...props
 }: InputProps) => {
@@ -23,7 +24,7 @@ export const Input = ({
         >
             {content}
             <input
-                // {...register(name)}
+                {...register(name)}
                 className={styles.input}
                 id={name}
                 type={type}

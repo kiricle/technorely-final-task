@@ -1,6 +1,7 @@
 import './App.scss';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { RegisterPage } from './pages/RegisterPage/RegisterPage';
+import { PrivatePage } from './pages/PrivatePage/PrivatePage';
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                     path="/login"
                     element={<h1>Login</h1>}
                 />
+                <Route path='/private' element={<PrivatePage />} />
                 <Route
                     path="*"
                     element={<Navigate to="/register" />}

@@ -41,6 +41,14 @@ export class UserService {
     return this.prisma.user.findFirst({ where: { nickname } });
   }
 
+  getByPhoneNumber(phoneNumber: string) {
+    return this.prisma.user.findFirst({
+      where: {
+        phoneNumber,
+      },
+    });
+  }
+
   async create({
     email,
     password,

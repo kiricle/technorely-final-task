@@ -1,0 +1,45 @@
+.button {
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 18px;
+    width: fit-content;
+
+    cursor: pointer;
+
+    border: 1px solid rgb(18, 18, 18);
+
+    transition: background-color .3s;
+}
+
+.primary {
+    background-color: rgb(18, 18, 18);
+    color: white;
+
+    &:hover {
+        background-color: rgb(35, 32, 32);
+    }
+}
+
+.secondary {
+    background-color: transparent;
+    color: black;
+
+    &:hover {
+        background-color: rgb(18, 18, 18);
+        color: white;
+    }
+}
+
+.danger {
+    background-color: crimson;
+    color: white;
+
+    &:hover {
+        background-color: rgb(168, 10, 42);
+    }
+}
+
+.button:focus,
+.button:focus-visible {
+    outline: #ff00aa auto 4px;
+}

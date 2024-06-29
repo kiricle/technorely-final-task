@@ -22,6 +22,13 @@ export class AuthService {
 
     if (isNicknameInUse) throw new BadRequestException('This nickname is used');
 
+    const isPhoneInUse = await this.userService.getByPhoneNumber(
+      dto.phoneNumber,
+    );
+
+    if (isPhoneInUse)
+      throw new BadRequestException('This phone number is used');
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { hash, ...user } = await this.userService.create(dto);
 

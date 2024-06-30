@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { Notify } from 'notiflix';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 import { authService } from '../../services/auth.service';
 import { Button } from '../../ui/Button/Button';
 import { Input } from '../../ui/Input/Input';
@@ -10,13 +11,18 @@ import styles from './SignInForm.module.scss';
 export const SignInForm = () => {
     const navigate = useNavigate();
 
+    const { toggleAuthState } = useAuth();
+
     const { mutate } = useMutation({
         mutationKey: ['sign-in'],
         mutationFn: (data: SignInForm) => authService.signIn(data),
         onError: (err) => {
             Notify.failure(err.message);
         },
-        onSuccess: () => navigate('/private'),
+        onSuccess: () => {
+            navigate('/private');
+            toggleAuthState();
+        },
     });
 
     const { register, handleSubmit } = useForm<SignUpForm>();

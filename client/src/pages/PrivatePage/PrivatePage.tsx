@@ -1,13 +1,12 @@
-import Cookies from 'js-cookie';
 import { Navigate } from 'react-router-dom';
-import { EnumToken } from '../../services/token.service';
+import { useAuth } from '../../hooks/useAuth';
 
 export const PrivatePage = () => {
-    const accessToken = Cookies.get(EnumToken.ACCESS_TOKEN);
+    const { isAuth } = useAuth();
 
-    if (!accessToken) {
-        return <Navigate to={'/register'} />;
+    if (!isAuth) {
+        return <Navigate to={'/sign-in'} />;
     }
 
-    return <div>PrivatePage</div>;
+    return <main>PrivatePage</main>;
 };

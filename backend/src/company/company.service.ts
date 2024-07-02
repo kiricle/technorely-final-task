@@ -41,9 +41,9 @@ export class CompanyService {
   async getCompanies(userId: string) {
     const isUserExists = await this.userService.getById(userId);
 
-    if (isUserExists) throw new BadRequestException('The user does not exist');
+    if (!isUserExists) throw new BadRequestException('The user does not exist');
 
-    return this.prisma.company.findFirst({
+    return this.prisma.company.findMany({
       where: {
         ownerId: userId,
       },

@@ -8,3 +8,9 @@ interface Company {
     type: string;
     ownerId: string;
 }
+
+interface CreateCompanyForm extends Omit<Company, 'id' | 'ownerId'> {
+    numberOfEmployees: string;
+}
+
+type CreateCompany = Omit<Company, 'id' | 'ownerId'>;

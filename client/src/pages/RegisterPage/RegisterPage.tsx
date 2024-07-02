@@ -6,7 +6,7 @@ export const RegisterPage = () => {
     const { isAuth } = useAuth();
 
     if (isAuth) {
-        return <Navigate to={'/private'} />;
+        return <Navigate to={'/companies'} />;
     }
 
     return (

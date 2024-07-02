@@ -1,0 +1,9 @@
+.main {
+    width: min(1200px, calc(100% - 30px));
+    margin-inline: auto;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}

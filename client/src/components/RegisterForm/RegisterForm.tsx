@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { Notify } from 'notiflix';
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+
 import { useAuth } from '../../hooks/useAuth';
 import { authService } from '../../services/auth.service';
 import { Button } from '../../ui/Button/Button';
@@ -10,8 +10,6 @@ import styles from './RegisterForm.module.scss';
 import { registerFormInputs } from './register-form-inputs';
 
 export const RegisterForm = () => {
-    const navigate = useNavigate();
-    
     const { toggleAuthState } = useAuth();
 
     const { mutate } = useMutation({
@@ -21,7 +19,6 @@ export const RegisterForm = () => {
             Notify.failure(err.message);
         },
         onSuccess: () => {
-            navigate('/private');
             toggleAuthState();
         },
     });

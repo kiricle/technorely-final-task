@@ -1,8 +1,22 @@
+import { Navigate } from 'react-router-dom';
 import { RegisterForm } from '../../components/RegisterForm/RegisterForm';
+import { useAuth } from '../../hooks/useAuth';
 
 export const RegisterPage = () => {
+    const { isAuth } = useAuth();
+
+    if (isAuth) {
+        return <Navigate to={'/private'} />;
+    }
+
     return (
-        <main>
+        <main
+            style={{
+                display: 'grid',
+                placeContent: 'center',
+                marginTop: '100px',
+            }}
+        >
             <RegisterForm />
         </main>
     );

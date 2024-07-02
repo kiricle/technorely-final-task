@@ -2,6 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { Notify } from 'notiflix';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 import { authService } from '../../services/auth.service';
 import { Button } from '../../ui/Button/Button';
 import { Input } from '../../ui/Input/Input';
@@ -10,6 +11,8 @@ import { registerFormInputs } from './register-form-inputs';
 
 export const RegisterForm = () => {
     const navigate = useNavigate();
+    
+    const { toggleAuthState } = useAuth();
 
     const { mutate } = useMutation({
         mutationKey: ['sign-up'],
@@ -17,7 +20,10 @@ export const RegisterForm = () => {
         onError: (err) => {
             Notify.failure(err.message);
         },
-        onSuccess: () => navigate('/private'),
+        onSuccess: () => {
+            navigate('/private');
+            toggleAuthState();
+        },
     });
 
     const { register, handleSubmit } = useForm<SignUpForm>();

@@ -5,3 +5,11 @@
         font-weight: bold;
     }
 }
+
+.link {
+    color: rgb(46, 158, 227);
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

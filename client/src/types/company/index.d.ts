@@ -14,3 +14,5 @@ interface CreateCompanyForm extends Omit<Company, 'id' | 'ownerId'> {
 }
 
 type CreateCompany = Omit<Company, 'id' | 'ownerId'>;
+
+type UpdateCompany = Omit<Company, 'ownerId'>;

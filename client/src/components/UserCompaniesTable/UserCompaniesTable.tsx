@@ -1,16 +1,17 @@
 import {
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
     TableContainer,
     TableHead,
     TableRow,
-    TableCell,
-    TableBody,
-    Paper,
-    Table,
 } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { Notify } from 'notiflix';
 import { companyService } from '../../services/company.service';
 import styles from './UserCompaniesTable.module.scss';
+import { Link } from 'react-router-dom';
 
 export const UserCompaniesTable = () => {
     const { data, isFetching, isError, error } = useQuery({
@@ -27,7 +28,6 @@ export const UserCompaniesTable = () => {
         return <h2>Something went wrong</h2>;
     }
 
-    console.log(data);
     return (
         <TableContainer component={Paper}>
             <Table>
@@ -48,7 +48,14 @@ export const UserCompaniesTable = () => {
                 <TableBody>
                     {data?.map((company) => (
                         <TableRow key={company.name}>
-                            <TableCell align="center">{company.name}</TableCell>
+                            <TableCell align="center">
+                                <Link
+                                    className={styles.link}
+                                    to={`/companies/${company.name}`}
+                                >
+                                    {company.name}
+                                </Link>
+                            </TableCell>
                             <TableCell align="center">
                                 {company.serviceOfActivity}
                             </TableCell>

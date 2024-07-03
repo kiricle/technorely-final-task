@@ -4,6 +4,7 @@ import { RegisterPage } from './pages/RegisterPage/RegisterPage';
 import { SignInPage } from './pages/SignInPage/SignInPage';
 import { Layout } from './Layout/Layout';
 import { CompaniesPage } from './pages/CompaniesPage/CompaniesPage';
+import { CompanyPage } from './pages/CompanyPage/CompanyPage';
 
 function App() {
     return (
@@ -21,6 +22,10 @@ function App() {
                     <Route
                         path="/companies"
                         element={<CompaniesPage />}
+                    />
+                    <Route
+                        path="/companies/:name"
+                        element={<CompanyPage />}
                     />
                     <Route
                         path="*"

@@ -1,0 +1,19 @@
+.label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    text-transform: uppercase;
+    gap: 6px;
+    align-items: flex-start;
+}
+
+.input {
+    padding: 10px 14px;
+    font-size: 16px;
+    border-radius: 8px;
+    font-family: inherit;
+
+    &::placeholder {
+        color: var(--black)
+    }
+}

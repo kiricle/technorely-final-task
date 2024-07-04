@@ -1,0 +1,80 @@
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: grid;
+    place-content: center;
+
+    animation: toAppear .3s;
+
+    background-color: rgba(0, 0, 0, .4);
+}
+
+.modal {
+    background-color: #F1F2F4;
+   
+    max-width: 1000px;
+    min-width: 800px;
+
+    animation: slideIn .6s;
+}
+
+@keyframes toAppear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        translate: 0 -100vh;
+    }
+
+    100% {
+        translate: 0 0;
+    }
+}
+
+.row {
+    display: flex;
+    padding: 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #F4F4F4;
+}
+
+.content {
+    padding: 20px;
+}
+
+.buttons {
+    margin-top: 50px;
+    border-top: 1px solid #F4F4F4;
+    width: 100%;
+    padding: 20px;
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.close {
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+
+    transition: .3s color;
+
+    &:hover {
+        color: red;
+    }
+}

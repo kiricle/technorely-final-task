@@ -1,0 +1,22 @@
+.main {
+    width: min(1200px, calc(100% - 30px));
+    margin-inline: auto;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, .3);
+
+    input {
+        width: 100%;
+    }
+}

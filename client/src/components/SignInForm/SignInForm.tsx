@@ -1,31 +1,10 @@
-import { useMutation } from '@tanstack/react-query';
-import { Notify } from 'notiflix';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useAuth } from '../../hooks/useAuth';
-import { authService } from '../../services/auth.service';
 import { Button } from '../../ui/Button/Button';
 import { Input } from '../../ui/Input/Input';
 import styles from './SignInForm.module.scss';
+import { useSignIn } from './useSignIn';
 
 export const SignInForm = () => {
-    const { toggleAuthState } = useAuth();
-
-    const { mutate } = useMutation({
-        mutationKey: ['sign-in'],
-        mutationFn: (data: SignInForm) => authService.signIn(data),
-        onError: (err) => {
-            Notify.failure(err.message);
-        },
-        onSuccess: () => {
-            toggleAuthState();
-        },
-    });
-
-    const { register, handleSubmit } = useForm<SignUpForm>();
-
-    const onSubmit: SubmitHandler<SignUpForm> = (data) => {
-        mutate(data);
-    };
+    const { handleSubmit, onSubmit, register } = useSignIn();
 
     return (
         <form

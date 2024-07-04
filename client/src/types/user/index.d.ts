@@ -7,3 +7,5 @@ interface User {
     position: string;
     phoneNumber: string;
 }
+
+type UpdateUser = Omit<User, 'id'>;

@@ -1,59 +1,12 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Notify } from 'notiflix';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useModal } from '../../hooks/useModal';
-import { companyService } from '../../services/company.service';
+import { Button } from '../../ui/Button/Button';
 import { Input } from '../../ui/Input/Input';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
 import styles from './CreateCompany.module.scss';
-import { Button } from '../../ui/Button/Button';
+import { useCreateCompany } from './useCreateCompany';
 
 export const CreateCompany = () => {
-    const { close, show, visible } = useModal();
-
-    const { register, handleSubmit } = useForm<CreateCompanyForm>();
-
-    const queryClient = useQueryClient();
-
-    const { mutate } = useMutation({
-        mutationKey: ['company'],
-        mutationFn: (data: CreateCompany) => companyService.createCompany(data),
-        onError: (err) => {
-            Notify.failure(err.message, {
-                clickToClose: true,
-            });
-        },
-        onSuccess: () =>
-            queryClient.refetchQueries({
-                queryKey: ['companies'],
-            }),
-    });
-
-    const onSubmit: SubmitHandler<CreateCompanyForm> = (data) => {
-        if (
-            data.address === '' ||
-            data.description === '' ||
-            data.name === '' ||
-            data.numberOfEmployees === '' ||
-            data.serviceOfActivity === '' ||
-            data.type === ''
-        ) {
-            Notify.failure('You have not filled all fields!', {
-                clickToClose: true,
-            });
-            return;
-        }
-
-        if (isNaN(Number(data.numberOfEmployees))) {
-            Notify.failure('Number of employee must be a number', {
-                clickToClose: true,
-            });
-            return;
-        }
-
-        mutate({ ...data, numberOfEmployees: Number(data.numberOfEmployees) });
-        close();
-    };
+    const { close, handleSubmit, onSubmit, register, show, visible } =
+        useCreateCompany();
 
     return (
         <>

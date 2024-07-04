@@ -8,6 +8,7 @@ export const registerFormInputs: Array<{
     {
         name: 'email',
         content: 'Email',
+        type: 'email',
     },
     {
         name: 'password',

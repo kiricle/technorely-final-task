@@ -6,7 +6,7 @@ export const SignInPage = () => {
     const { isAuth } = useAuth();
 
     if (isAuth) {
-        return <Navigate to={'/private'} />;
+        return <Navigate to={'/companies'} />;
     }
 
     return (

@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ForbiddenException,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -7,6 +8,7 @@ import { hash, verify } from 'argon2';
 import { SignUpDto } from 'src/auth/dto/auth.dto';
 import { SignInDto } from 'src/auth/dto/sign-in.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -69,5 +71,27 @@ export class UserService {
         phoneNumber,
       },
     });
+  }
+
+  async updateProfile(userId: string, dto: UpdateUserDto) {
+    const user = await this.getById(dto.id);
+
+    const { id, ...fieldsToUpdate } = dto;
+
+    if (!user) throw new BadRequestException('There is no such user');
+
+    if (userId !== user.id)
+      throw new ForbiddenException('You can not change other users');
+
+    const updatedUser = await this.prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        ...fieldsToUpdate,
+      },
+    });
+
+    return updatedUser;
   }
 }

@@ -11,6 +11,11 @@ export const Header = () => {
     return (
         <header className={styles.header}>
             <Logo />
+            {isAuth && (
+                <Button appearance="primary">
+                    <Link to={'/profile'}>Profile</Link>
+                </Button>
+            )}
             <div className={styles.buttons}>
                 {!isAuth ? (
                     <>
